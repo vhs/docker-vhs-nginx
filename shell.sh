@@ -1,6 +1,4 @@
 #!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-docker build -t hackspace/vhs-nginx $DIR
 
 echo "Killing old instance (if any)"
 docker kill vhs-nginx-shell
