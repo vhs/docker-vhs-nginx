@@ -3,6 +3,12 @@
 Basic nginx reverse proxy for discourse and wordpress. Both discourse and wordpress containers
 must be running first.
 
+## Building
+
+```
+./build.sh
+```
+
 ## Starting
 
 ```
