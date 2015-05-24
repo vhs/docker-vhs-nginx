@@ -1,4 +1,7 @@
 #!/bin/bash
 
-replace_env.sh
+echo "Swapping out ENV Vars"
+/usr/sbin/replace_env.sh
+
+echo "Starting NGINX"
 nginx
