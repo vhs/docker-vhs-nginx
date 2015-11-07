@@ -81,7 +81,7 @@ if [ "$test_config" == true ]; then
     docker run -it --name $NAME -t hackspace/$TEMPLATE nginx -t
     exit $?
 else
-    docker run -p 81:80 -p 444:443 -d --name $NAME \
+    docker run -p 80:80 -p 443:443 -d --name $NAME \
         $RUN_OPTS \
         -t hackspace/$TEMPLATE $COMMAND
 fi
