@@ -1,8 +1,7 @@
 FROM dockerfile/nginx
 
-ADD nginx.conf /etc/nginx/
-ADD conf.d/ /etc/nginx/conf.d
-ADD certs/ /etc/nginx/certs/
-ADD bin/ /usr/sbin/
+COPY conf/ /etc/nginx/
+COPY certs/ /etc/nginx/certs/
+COPY bin/ /usr/sbin/
 
-CMD ["run.sh"]
+CMD ["nginx"]
