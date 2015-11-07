@@ -37,7 +37,7 @@ while getopts :hfwdat opt; do
         w) no_website=true;;
         d) no_discourse=true;;
         a) no_api=true;;
-        t) test_config=true; force=true;;
+        t) test_config=true; force=true; NAME=$NAME-test;;
         ?) echo "Invalid option: -$OPTARG" >&2; print_help; exit 1;;
         :) echo "Option -$OPTARG requires an argument." >&2; print_help; exit 1;;
     esac
