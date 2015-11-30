@@ -78,7 +78,7 @@ if [ "$exists" = true ]; then
 fi
 
 if [ "$test_config" == true ]; then
-    docker run -it --name $NAME -t vanhack/$TEMPLATE nginx -t
+    docker run -it --name $NAME $RUN_OPTS -t vanhack/$TEMPLATE nginx -t
     exit $?
 else
     docker run --restart=always -p 80:80 -p 443:443 -d --name $NAME \
