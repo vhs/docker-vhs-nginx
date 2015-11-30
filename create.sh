@@ -78,12 +78,12 @@ if [ "$exists" = true ]; then
 fi
 
 if [ "$test_config" == true ]; then
-    docker run -it --name $NAME -t hackspace/$TEMPLATE nginx -t
+    docker run -it --name $NAME -t vanhack/$TEMPLATE nginx -t
     exit $?
 else
-    docker run -p 80:80 -p 443:443 -d --name $NAME \
+    docker run --restart=always -p 80:80 -p 443:443 -d --name $NAME \
         $RUN_OPTS \
-        -t hackspace/$TEMPLATE $COMMAND
+        -t vanhack/$TEMPLATE $COMMAND
 fi
 
 if [ "$?" != "0" ]; then

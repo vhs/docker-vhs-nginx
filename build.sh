@@ -21,8 +21,8 @@ while getopts :nh opt; do
     esac
 done
 
-docker build -t hackspace/$TEMPLATE $BUILD_OPTS $DIR
+docker build -t vanhack/$TEMPLATE $BUILD_OPTS $DIR
 
-echo "Your template hackspace/$TEMPLATE has been successfully built"
+echo "Your template vanhack/$TEMPLATE has been successfully built"
 echo "To create a new container based on this template then run create.sh"
 echo "To test the nginx config first run create.sh -t"

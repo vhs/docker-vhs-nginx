@@ -1,4 +1,4 @@
-FROM dockerfile/nginx
+FROM nginx
 
 COPY conf/ /etc/nginx/
 COPY certs/ /etc/nginx/certs/
