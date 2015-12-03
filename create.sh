@@ -83,6 +83,7 @@ if [ "$test_config" == true ]; then
 else
     docker run --restart=always -p 80:80 -p 443:443 -d --name $NAME \
         $RUN_OPTS \
+        --restart=always \
         -t vanhack/$TEMPLATE $COMMAND
 fi
 
