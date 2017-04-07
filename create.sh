@@ -52,7 +52,7 @@ if [ "$?" == "0" ]; then
 fi 
 
 RUN_OPTS="-v $DIR/logs:/var/log/nginx";
-if [ "$no_website" != true ]; then RUN_OPTS="$RUN_OPTS --volumes-from vhs-website --link vhs-website:vhs-website --link vhs-api:vhs-api --link isvhsopen:isvhsopen --link grafana:grafana --link atoms:atoms --link vhs-portal:vhs-portal"; fi
+if [ "$no_website" != true ]; then RUN_OPTS="$RUN_OPTS --volumes-from vhs-website --link vhs-website:vhs-website --link vhs-api:vhs-api --link isvhsopen:isvhsopen --link grafana:grafana --link influxdb:influxdb --link atoms:atoms --link vhs-portal:vhs-portal"; fi
 if [ "$no_discourse" != true ]; then RUN_OPTS="$RUN_OPTS --link app:app"; fi
 
 # Only stop the container if force is used
