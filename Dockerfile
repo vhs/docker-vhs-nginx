@@ -14,6 +14,4 @@ COPY conf/ /etc/nginx/
 COPY certs/ /etc/nginx/certs/
 COPY bin/ /usr/sbin/
 
-RUN mkdir -p /var/nginx/letsencrypt
-
 CMD ["nginx"]
