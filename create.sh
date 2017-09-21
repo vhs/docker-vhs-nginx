@@ -13,11 +13,16 @@ function print_help {
     printf "Create a container from the ${TEMPLATE} template and start it\n\n"
     printf "Usage: create.sh\n"
     printf "Options:\n"
+    printf "    -t         test mode\n"
     printf "    -f         stop and remove existing container before creating\n"
     printf "    -h         there is no help for you\n\n"
-    printf "    -w         do not link vhs-websitei\n"
+    printf "    -w         do not link vhs-website\n"
     printf "    -d         do not link discourse\n"
     printf "    -a         do not link api\n"
+    printf "    -o         do not link isvhsopen\n"
+    printf "    -g         do not link grafana\n"
+    printf "    -i         do not link influxdb\n"
+    printf "    -p         do not link portal\n"
     print_docker_help
     exit 0
 } 
@@ -30,13 +35,17 @@ function print_docker_help {
 }
 
 # extract options and their arguments into variables.
-while getopts :hfwdat opt; do
+while getopts :hfwdatogip opt; do
     case $opt in
         f) force=true;;
         h) print_help;;
         w) no_website=true;;
         d) no_discourse=true;;
         a) no_api=true;;
+        o) no_isvhsopen=true;;
+        g) no_grafana=true;;
+        i) no_influxdb=true;;
+        p) no_portal=true;;
         t) test_config=true; force=true; NAME=$NAME-test;;
         ?) echo "Invalid option: -$OPTARG" >&2; print_help; exit 1;;
         :) echo "Option -$OPTARG requires an argument." >&2; print_help; exit 1;;
@@ -51,9 +60,20 @@ if [ "$?" == "0" ]; then
     exists=true
 fi 
 
-RUN_OPTS="-v $DIR/logs:/var/log/nginx";
-if [ "$no_website" != true ]; then RUN_OPTS="$RUN_OPTS --volumes-from vhs-website --link vhs-website:vhs-website --link vhs-api:vhs-api --link isvhsopen:isvhsopen --link grafana:grafana --link influxdb:influxdb --link vhs-portal:vhs-portal"; fi
+RUN_OPTS="-v $DIR/logs:/var/log/nginx -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt";
+if [ "$no_website" != true ]; then RUN_OPTS="$RUN_OPTS --volumes-from vhs-website --link vhs-website:vhs-website"; fi
+
 if [ "$no_discourse" != true ]; then RUN_OPTS="$RUN_OPTS --link app:app"; fi
+
+if [ "$no_api" != true ] ; then RUN_OPTS="$RUN_OPTS --link vhs-api:vhs-api"; fi
+
+if [ "$no_isvhsopen" != true ] ; then RUN_OPTS="$RUN_OPTS --link isvhsopen:isvhsopen"; fi
+
+if [ "$no_grafana" != true ] ; then RUN_OPTS="$RUN_OPTS --link grafana:grafana"; fi
+
+if [ "$no_influxdb" != true ] ; then RUN_OPTS="$RUN_OPTS --link influxdb:influxdb"; fi
+
+if [ "$no_portal" != true ] ; then RUN_OPTS="$RUN_OPTS --link vhs-portal:vhs-portal"; fi
 
 # Only stop the container if force is used
 if [ "$running" == "true" ]; then
