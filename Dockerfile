@@ -15,5 +15,6 @@ COPY certs/ /etc/nginx/certs/
 COPY bin/ /usr/sbin/
 
 RUN mkdir /var/nginx/.well-known
+RUN echo Hi > /var/nginx/.well-known/test.txt
 
 CMD ["nginx"]
