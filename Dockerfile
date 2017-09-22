@@ -14,4 +14,6 @@ COPY conf/ /etc/nginx/
 COPY certs/ /etc/nginx/certs/
 COPY bin/ /usr/sbin/
 
+RUN mkdir /var/nginx/.well-known
+
 CMD ["nginx"]
