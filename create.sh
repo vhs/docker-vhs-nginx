@@ -70,7 +70,7 @@ fi
 RUN_OPTS="-v $DIR/logs:/var/log/nginx";
 RUN_OPTS="$RUN_OPTS -v /etc/letsencrypt:/etc/letsencrypt";
 RUN_OPTS="$RUN_OPTS -v /var/lib/letsencrypt:/var/lib/letsencrypt";
-RUN_OPTS="$RUN_OPTS -v /var/nginx/.well-known:/var/nginx/.well-known";
+RUN_OPTS="$RUN_OPTS -v /var/containers/shared/.well-known:/var/nginx/.well-known";
 
 if [ "$no_api" != true ] ; then RUN_OPTS="$RUN_OPTS --link vhs-api:vhs-api"; fi
 
