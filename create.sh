@@ -39,7 +39,7 @@ function print_docker_help {
 }
 
 # extract options and their arguments into variables.
-while getopts :hfwdatogip opt; do
+while getopts :tfhabcdegijk opt; do
     case $opt in
         t) test_config=true; force=true; NAME=$NAME-test;;
         f) force=true;;
