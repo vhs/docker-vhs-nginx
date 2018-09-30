@@ -26,6 +26,7 @@ function print_help {
     printf "    -i         do not link itlb\n"
     printf "    -j         do not link portal\n"
     printf "    -k         do not link vhs-website\n"
+    printf "    -l         do not link hookhub\n"
 
     print_docker_help
     exit 0
@@ -54,6 +55,7 @@ while getopts :tfhabcdegijk opt; do
         i) no_itlb=true;;
         j) no_portal=true;;
         k) no_website=true;;
+        l) no_hookhub=true;;
         ?) echo "Invalid option: -$OPTARG" >&2; print_help; exit 1;;
         :) echo "Option -$OPTARG requires an argument." >&2; print_help; exit 1;;
     esac
@@ -89,6 +91,8 @@ if [ "$no_itlb" != true ] ; then RUN_OPTS="$RUN_OPTS --link vhs-itlb:vhs-itlb"; 
 if [ "$no_portal" != true ] ; then RUN_OPTS="$RUN_OPTS --link vhs-portal:vhs-portal"; fi
 
 if [ "$no_website" != true ]; then RUN_OPTS="$RUN_OPTS --volumes-from vhs-website --link vhs-website:vhs-website"; fi
+
+if [ "$no_hookhub" != true ]; then RUN_OPTS="$RUN_OPTS --link hookhub:hookhub"; fi
 
 # Only stop the container if force is used
 if [ "$running" == "true" ]; then
