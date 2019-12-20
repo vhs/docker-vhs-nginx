@@ -78,7 +78,7 @@ if [ "$no_api" != true ] ; then RUN_OPTS="$RUN_OPTS --link vhs-api:vhs-api"; fi
 
 if [ "$no_deletron3030" != true ] ; then RUN_OPTS="$RUN_OPTS --link deletron3030:deletron3030"; fi
 
-if [ "$no_discourse" != true ]; then RUN_OPTS="$RUN_OPTS --link app:app"; fi
+if [ "$no_discourse" != true ]; then RUN_OPTS="$RUN_OPTS --link talk:talk"; fi
 
 if [ "$no_grafana" != true ] ; then RUN_OPTS="$RUN_OPTS --link grafana:grafana"; fi
 
